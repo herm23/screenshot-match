@@ -123,3 +123,8 @@
     outline-offset: 2px;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-rise, .animate-mic-pulse { animation: none; }
+  html { scroll-behavior: auto; }
+}

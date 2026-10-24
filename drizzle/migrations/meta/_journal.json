@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1792830648637,
+      "tag": "0000_shopping_profiles_lists_cache",
+      "breakpoints": true
+    }
+  ]
+}

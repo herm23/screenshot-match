@@ -8,3 +8,8 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep shared shopping data contracts in `src/features/shopping/models.ts`, dictation in its hook, and a single reusable map renderer; both home and shopping-list views share position and nearby-result state to avoid duplicated requests.
+- Run AI extraction and Google Maps data requests through authenticated TanStack server functions; browser Maps is rendering-only and server credentials remain private.
+- Persist user profiles, shopping lists and bounded per-user Maps caches in Cloud with owner-scoped RLS; do not seed or persist private data in browser storage.
+- Keep one root auth subscriber and provider for session/profile state so login, logout and saved-list loading remain consistent across public content.

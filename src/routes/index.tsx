@@ -124,7 +124,7 @@ function Index() {
                   className="size-1.5 rounded-full bg-primary"
                 />
                 {locationLabel}
-              </p>{location.estimated && <Button variant="link" className="h-auto px-0 py-1 text-sm" onClick={correctLocation}>Non è corretta?</Button>}</div>
+              </p><span className="text-xs text-muted-foreground">{location.sourceLabel}</span>{location.estimated && <Button variant="link" className="h-auto px-0 py-1 text-sm" onClick={correctLocation}>Non è corretta?</Button>}</div>
             )}
             {location.estimating && <p role="status" className="mt-3 text-sm text-muted-foreground">Stimo la posizione…</p>}
           </div>
@@ -141,6 +141,8 @@ function Index() {
           </Button>
         </div>
 
+        {location.showPrecisionPrompt && <div className="mt-3 flex flex-wrap items-center gap-x-2 text-sm text-muted-foreground"><span>Vuoi risultati più precisi?</span><Button variant="link" className="h-auto px-0 py-1" onClick={askLocation} disabled={location.locating}><MapPin />Usa la mia posizione</Button></div>}
+        {location.locationError && <p role="status" className="mt-3 text-sm text-muted-foreground">{location.locationError}</p>}
         <p className="mt-6 text-muted-foreground">Cosa vuoi comprare?</p>
 
         <div className="mt-3 flex items-start gap-3">
@@ -196,9 +198,9 @@ function Index() {
         <div className="mb-3 flex items-center justify-between gap-3"><h2 className="font-display text-xl font-bold">Supermercati vicini</h2><Button variant="ghost" size="icon" aria-label="Chiudi mappa" onClick={() => { setMapOpen(false); location.setCorrectionOpen(false); }}><X /></Button></div>
         <SupermarketMap center={center} places={places} loading={mapLoading} locationLabel={locationLabel} />
         {mapError && <p role="alert" className="mt-3 text-sm text-destructive">{mapError}</p>}
-        {locationLabel ? <p className="mt-3 text-sm text-muted-foreground">{locationLabel}</p> : !location.estimating && <p className="mt-3 text-sm text-muted-foreground">Posizione stimata non disponibile. Inserisci una città o usa la posizione precisa.</p>}
+        {locationLabel ? <p className="mt-3 text-sm text-muted-foreground">{locationLabel} · {location.sourceLabel}</p> : !location.estimating && <p className="mt-3 text-sm text-muted-foreground">Posizione non disponibile. Inserisci una città o un indirizzo.</p>}
         <form onSubmit={event => { event.preventDefault(); void searchAddress(); }} className="mt-3 flex gap-2"><input aria-label="Città o indirizzo" value={address} maxLength={200} onChange={event => setAddress(event.target.value)} placeholder="Città o indirizzo" className="min-w-0 flex-1 rounded-md border bg-surface px-3 py-2 text-sm" /><Button type="submit" disabled={!address.trim() || mapLoading || !auth.user}>Cerca</Button></form>
-        <Button variant="outline" className="mt-3" onClick={askLocation} disabled={mapLoading}><MapPin />Usa posizione precisa</Button>
+        {location.permission !== 'denied' && <Button variant="outline" className="mt-3" onClick={askLocation} disabled={location.locating}><MapPin />{location.locating ? 'Cerco la posizione…' : 'Usa posizione precisa'}</Button>}
         {!auth.user && <Button className="mt-3 w-full" variant="outline" onClick={() => void auth.signIn()}>Accedi con Google per cercare supermercati</Button>}
       </div>}
 
@@ -224,7 +226,7 @@ function Index() {
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3"><h2 className="font-display text-3xl font-bold">Lista della spesa</h2><span role="status" className="text-sm text-muted-foreground">{saveStatus}</span></div>
         <div className="grid items-start gap-8 md:grid-cols-2">
           <div><ShoppingList items={items} onChange={changeItems} />{listError && <div className="mt-3"><p role="alert" className="text-sm text-destructive">{listError}</p>{auth.user && <Button variant="outline" className="mt-2" onClick={() => { pendingSave.current = items; setListError(''); void flushSave(); }}>Riprova a salvare</Button>}</div>}</div>
-          <aside className="md:sticky md:top-6"><div className="mb-3 flex items-center justify-between"><h3 className="font-medium">Dove fare la spesa</h3><Button variant="outline" size="sm" onClick={askLocation} disabled={mapLoading}><MapPin />Posizione</Button></div><SupermarketMap center={center} places={places} loading={mapLoading} locationLabel={locationLabel} />{mapError && <p role="alert" className="mt-3 text-sm text-destructive">{mapError}</p>}<Button variant="link" className="mt-2 h-auto px-0 whitespace-normal" onClick={correctLocation}>Inserisci città o indirizzo</Button></aside>
+          <aside className="md:sticky md:top-6"><div className="mb-3 flex items-center justify-between"><h3 className="font-medium">Dove fare la spesa</h3><Button variant="outline" size="sm" onClick={location.permission === 'denied' ? correctLocation : askLocation} disabled={location.locating}><MapPin />Posizione</Button></div><SupermarketMap center={center} places={places} loading={mapLoading} locationLabel={locationLabel} />{mapError && <p role="alert" className="mt-3 text-sm text-destructive">{mapError}</p>}<Button variant="link" className="mt-2 h-auto px-0 whitespace-normal" onClick={correctLocation}>Inserisci città o indirizzo</Button></aside>
         </div>
       </section>
     </main>

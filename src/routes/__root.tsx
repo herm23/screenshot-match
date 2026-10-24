@@ -12,7 +12,9 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { AuthProvider } from '@/features/shopping/AuthProvider';
+import { ShoppingBasket } from "lucide-react";
+import { ShoppingProvider } from '@/features/shopping/ShoppingProvider';
+import { ThemeToggle, THEME_INIT_SCRIPT } from '@/components/ThemeToggle';
 
 function NotFoundComponent() {
   return (
@@ -88,10 +90,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Geist+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
+    scripts: [{ children: THEME_INIT_SCRIPT }],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -101,7 +104,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="it">
+    <html lang="it" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
@@ -119,7 +122,19 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <AuthProvider><Outlet /></AuthProvider>
+      <ShoppingProvider>
+        <div className="flex min-h-screen flex-col">
+          <nav className="es-nav sticky top-0 z-[1000] flex items-center justify-between border-b px-4 py-3 md:px-6">
+            <Link to="/" className="flex items-center gap-2 font-display text-lg font-bold text-foreground">
+              <ShoppingBasket className="size-5 text-primary" />Easy Shop
+            </Link>
+            <ThemeToggle />
+          </nav>
+          <main className="flex flex-1 flex-col">
+            <Outlet />
+          </main>
+        </div>
+      </ShoppingProvider>
     </QueryClientProvider>
   );
 }

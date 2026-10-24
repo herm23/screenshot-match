@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MappaRouteImport } from './routes/mappa'
+import { Route as MicrofonoRouteImport } from './routes/microfono'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MappaRoute = MappaRouteImport.update({
+  id: '/mappa',
+  path: '/mappa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MicrofonoRoute = MicrofonoRouteImport.update({
+  id: '/microfono',
+  path: '/microfono',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/mappa': typeof MappaRoute
+  '/microfono': typeof MicrofonoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/mappa': typeof MappaRoute
+  '/microfono': typeof MicrofonoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/mappa': typeof MappaRoute
+  '/microfono': typeof MicrofonoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/mappa' | '/microfono'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/mappa' | '/microfono'
+  id: '__root__' | '/' | '/mappa' | '/microfono'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  MappaRoute: typeof MappaRoute
+  MicrofonoRoute: typeof MicrofonoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mappa': {
+      id: '/mappa'
+      path: '/mappa'
+      fullPath: '/mappa'
+      preLoaderRoute: typeof MappaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/microfono': {
+      id: '/microfono'
+      path: '/microfono'
+      fullPath: '/microfono'
+      preLoaderRoute: typeof MicrofonoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  MappaRoute: MappaRoute,
+  MicrofonoRoute: MicrofonoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

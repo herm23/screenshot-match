@@ -16,9 +16,14 @@ Continue developing this project in the [Lovable editor](https://lovable.dev/pro
 
 Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
 
+Requires Node.js 22 (Vite 8 does not run on Node 18).
+
 ```sh
 git clone <this-repository-url>
 cd <repository-name>
-npm i
-npm run dev
+npm i          # .npmrc sets legacy-peer-deps: without it npm 10 fails resolving peers
+npm run dev    # http://localhost:5173
+npm test
 ```
+
+The app uses fake data only (see `AGENTS.md`): no login or API keys are needed.

@@ -24,6 +24,7 @@ export function useShoppingLocation(userId: string | undefined) {
   const current = useRef<LocationRecord | null>(null);
   const alive = useRef(true);
   const freshPrecise = useRef(false);
+  const locationTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const ipPromise = useRef<ReturnType<typeof estimate> | null>(null);
   identity.current = userId;
 
@@ -46,7 +47,25 @@ export function useShoppingLocation(userId: string | undefined) {
     if (permission === 'denied') { setCorrectionOpen(true); return; }
     if (!navigator.geolocation) { setLocationError('La posizione non è disponibile in questo browser. Usa la città o l’indirizzo.'); void ipFallback(version); return; }
     setLocating(true);
+    let finished = false;
+    const failure = (reason: { code: number }) => {
+      if (finished || !alive.current || version !== choiceVersion.current) return;
+      finished = true;
+      if (locationTimer.current) clearTimeout(locationTimer.current);
+      setLocating(false);
+      if (reason.code === 1) { setPermission('denied'); setCorrectionOpen(true); setLocationError('Permesso posizione negato. Puoi riattivarlo nelle impostazioni del browser, nei permessi di questo sito.'); }
+      else if (reason.code === 2) setLocationError('Posizione non disponibile. Uso la stima da IP; puoi inserire città o indirizzo.');
+      else setLocationError('Tempo scaduto dopo 10 secondi. Uso la stima da IP; puoi inserire città o indirizzo.');
+      if (current.current?.source === 'precise') current.current = null;
+      void ipFallback(version);
+    };
+    // Browsers may exclude time spent in the permission prompt from their timeout.
+    if (locationTimer.current) clearTimeout(locationTimer.current);
+    locationTimer.current = setTimeout(() => failure({ code: 3 }), GEOLOCATION_OPTIONS.timeout);
     navigator.geolocation.getCurrentPosition(position => {
+      if (finished) return;
+      finished = true;
+      if (locationTimer.current) clearTimeout(locationTimer.current);
       if (!alive.current || version !== choiceVersion.current) return;
       setPermission('granted'); setLocating(false);
       const approximate = position.coords.accuracy > 1000;
@@ -54,16 +73,7 @@ export function useShoppingLocation(userId: string | undefined) {
       commit({ lat: position.coords.latitude, lng: position.coords.longitude, label: `${position.coords.latitude.toFixed(4)}, ${position.coords.longitude.toFixed(4)}`, source: approximate ? 'approximate' : 'precise', accuracy: position.coords.accuracy });
       setCorrectionOpen(approximate);
       setLocationError(approximate ? 'La posizione ha un margine superiore a 1 km. Correggila con città o indirizzo.' : '');
-    }, reason => {
-      if (!alive.current || version !== choiceVersion.current) return;
-      setLocating(false);
-      if (reason.code === 1) { setPermission('denied'); setCorrectionOpen(true); setLocationError('Permesso posizione negato. Puoi riattivarlo nelle impostazioni del browser, nei permessi di questo sito.'); }
-      else if (reason.code === 2) setLocationError('Posizione non disponibile. Uso la stima da IP; puoi inserire città o indirizzo.');
-      else setLocationError('Tempo scaduto dopo 10 secondi. Uso la stima da IP; puoi inserire città o indirizzo.');
-      // A previous precise cache is not a successful fix for this attempt.
-      if (current.current?.source === 'precise') current.current = null;
-      void ipFallback(version);
-    }, GEOLOCATION_OPTIONS);
+    }, failure, GEOLOCATION_OPTIONS);
   };
 
   useEffect(() => {
@@ -95,7 +105,7 @@ export function useShoppingLocation(userId: string | undefined) {
       finally { if (alive.current && current.current) setEstimating(false); }
     };
     void check();
-    return () => { alive.current = false; if (status && listener) status.removeEventListener?.('change', listener); };
+    return () => { alive.current = false; if (locationTimer.current) clearTimeout(locationTimer.current); if (status && listener) status.removeEventListener?.('change', listener); };
   }, [estimate]);
 
   // Label lookup cannot replace coordinates or overwrite a newer choice.

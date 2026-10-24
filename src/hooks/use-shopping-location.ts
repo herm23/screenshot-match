@@ -23,6 +23,7 @@ export function useShoppingLocation(userId: string | undefined) {
   const identity = useRef(userId);
   const current = useRef<LocationRecord | null>(null);
   const alive = useRef(true);
+  const freshPrecise = useRef(false);
   const ipPromise = useRef<ReturnType<typeof estimate> | null>(null);
   identity.current = userId;
 
@@ -35,7 +36,7 @@ export function useShoppingLocation(userId: string | undefined) {
     if (!ipPromise.current) ipPromise.current = estimate();
     try {
       const result = await ipPromise.current;
-      if (!alive.current || version !== choiceVersion.current || current.current?.source === 'manual' || current.current?.source === 'precise') return;
+      if (!alive.current || version !== choiceVersion.current || current.current?.source === 'manual' || freshPrecise.current) return;
       if (result.location) commit({ lat: result.location.lat, lng: result.location.lng, label: result.location.city, source: 'ip' });
       else if (!current.current) setCorrectionOpen(true);
     } catch { if (alive.current && version === choiceVersion.current && !current.current) setCorrectionOpen(true); }
@@ -49,6 +50,7 @@ export function useShoppingLocation(userId: string | undefined) {
       if (!alive.current || version !== choiceVersion.current) return;
       setPermission('granted'); setLocating(false);
       const approximate = position.coords.accuracy > 1000;
+      freshPrecise.current = !approximate;
       commit({ lat: position.coords.latitude, lng: position.coords.longitude, label: `${position.coords.latitude.toFixed(4)}, ${position.coords.longitude.toFixed(4)}`, source: approximate ? 'approximate' : 'precise', accuracy: position.coords.accuracy });
       setCorrectionOpen(approximate);
       setLocationError(approximate ? 'La posizione ha un margine superiore a 1 km. Correggila con città o indirizzo.' : '');

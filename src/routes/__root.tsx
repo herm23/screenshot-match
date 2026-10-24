@@ -16,6 +16,7 @@ import { ShoppingProvider } from '@/features/shopping/ShoppingProvider';
 import { ThemeToggle, THEME_INIT_SCRIPT } from '@/components/ThemeToggle';
 import { Logo } from '@/components/Logo';
 import { LocationStatus } from '@/features/shopping/LocationStatus';
+import { CommunityProvider } from '@/features/community/CommunityProvider';
 
 function NotFoundComponent() {
   return (
@@ -125,6 +126,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <ShoppingProvider>
+      <CommunityProvider>
         <div className="flex min-h-screen flex-col">
           <nav className="es-nav sticky top-0 z-40 flex items-center justify-between gap-3 border-b px-4 py-3 md:px-6">
             <Link to="/" aria-label="SHOPT, torna alla home" className="shrink-0">
@@ -139,6 +141,7 @@ function RootComponent() {
             <Outlet />
           </main>
         </div>
+      </CommunityProvider>
       </ShoppingProvider>
     </QueryClientProvider>
   );

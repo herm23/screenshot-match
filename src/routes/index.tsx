@@ -3,6 +3,8 @@ import { ArrowRight, MapPinned, Mic } from "lucide-react";
 import { useShopping } from '@/features/shopping/ShoppingProvider';
 import { Logo } from '@/components/Logo';
 import { formatPrice } from '@/features/shopping/pricing';
+import { WalletCard } from '@/features/community/WalletCard';
+import { Mascot } from '@/features/community/Mascot';
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -20,16 +22,18 @@ export const Route = createFileRoute("/")({
 
 const TOOLS = [
   { to: '/microfono', index: '01', label: 'La tua spesa', hint: 'Detta, scrivi e confronta i prezzi', icon: Mic, iconClass: 'tool-icon--mic' },
-  { to: '/mappa', index: '02', label: 'Mappa', hint: 'Il negozio più vicino con tutto', icon: MapPinned, iconClass: 'tool-icon--map' },
+  { to: '/social', index: '02', label: 'Social', hint: 'Negozi, post e classifica vicino a te', icon: MapPinned, iconClass: 'tool-icon--map' },
 ] as const;
 
 function Index() {
   const { items, plan } = useShopping();
   return (
-    <section className="mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center px-4 py-16 text-center">
+    <section className="mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center px-4 pb-32 pt-16 text-center">
       <h1 className="animate-rise mb-8 w-full max-w-md sm:max-w-lg"><Logo className="w-full" /></h1>
       <p className="es-title text-gradient animate-rise mb-4">Cosa vuoi comprare?</p>
-      <p className="mx-auto mb-8 max-w-[34rem] text-lg text-muted-foreground">Scegli da dove partire: la tua voce o i supermercati vicino a te.</p>
+      <p className="mx-auto mb-8 max-w-[34rem] text-lg text-muted-foreground">Scegli da dove partire: la tua spesa o la community vicino a te.</p>
+
+      <div className="mb-8 flex w-full justify-center"><WalletCard /></div>
 
       <div className="grid w-full max-w-3xl gap-6 sm:grid-cols-2">
         {TOOLS.map(tool => (
@@ -48,6 +52,7 @@ function Index() {
           La tua lista: {items.length} {items.length === 1 ? 'prodotto' : 'prodotti'} · {formatPrice(plan.total)}<ArrowRight className="size-4" />
         </Link>
       )}
+      <Mascot />
     </section>
   );
 }

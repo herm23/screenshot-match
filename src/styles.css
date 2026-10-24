@@ -95,6 +95,15 @@
   100% { box-shadow: 0 0 0 16px color-mix(in oklab, var(--accent-2) 0%, transparent); }
 }
 
+@keyframes post-pulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--member) 60%, transparent); }
+  100% { box-shadow: 0 0 0 16px color-mix(in srgb, var(--member) 0%, transparent); }
+}
+@keyframes mascot-bob {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-4px) rotate(-3deg); }
+}
+
 @utility animate-mic-pulse {
   animation: mic-pulse 1.2s ease-out infinite;
 }
@@ -307,7 +316,6 @@
     overflow: hidden;
     transform: rotate(45deg);
   }
-  .es-pin-store img { width: 82%; height: 82%; object-fit: contain; }
   .es-pin-store b { color: var(--chain); font-weight: 700; }
   .es-pin-store--best {
     width: 40px;
@@ -328,6 +336,45 @@
     stroke-width: 1.5;
   }
 
+  /* Post della community sulla mappa: icona del sito con l'anello del colore dell'utente */
+  .es-pin-post {
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid var(--member);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+    padding: 2px;
+    overflow: hidden;
+  }
+  .es-pin-post--recent { animation: post-pulse 1.8s ease-out infinite; }
+
+  /* Vignetta della mascotte: fumetto con la punta verso la mascotte in basso a destra */
+  .es-bubble {
+    border-radius: 1.5rem;
+    background: var(--surface);
+    border: 2px solid var(--primary);
+    box-shadow: var(--shadow);
+  }
+  .es-bubble::after {
+    content: "";
+    position: absolute;
+    right: 1.75rem;
+    bottom: -12px;
+    width: 22px;
+    height: 22px;
+    background: var(--surface);
+    border-right: 2px solid var(--primary);
+    border-bottom: 2px solid var(--primary);
+    transform: rotate(45deg);
+    border-bottom-right-radius: 4px;
+  }
+  .es-mascot {
+    border: 2px solid var(--primary);
+    box-shadow: var(--shadow);
+    animation: mascot-bob 3s ease-in-out infinite;
+  }
+
   /* Logo: versione con scritta chiara sul tema scuro */
   .logo-light { display: none; }
   .logo-dark { display: block; }
@@ -343,7 +390,12 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-rise, .animate-mic-pulse, .es-pin-user { animation: none; }
+  .animate-rise, .animate-mic-pulse, .es-pin-user, .es-pin-post--recent, .es-mascot { animation: none; }
   .tool-card, .tool-icon { transition: none; }
   html { scroll-behavior: auto; }
 }
+
+/* Fuori da @layer: leaflet.css non usa layer e forza width:auto sulle immagini dei marker,
+   quindi una regola dentro un layer perderebbe sempre */
+.es-map .leaflet-marker-pane .es-pin-post img { width: 100%; height: 100%; object-fit: contain; }
+.es-map .leaflet-marker-pane .es-pin-store img { width: 82%; height: 82%; object-fit: contain; }

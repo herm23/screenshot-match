@@ -9,6 +9,8 @@ import type { Store } from './places';
 import { formatDistance } from './pricing';
 
 export type Highlight = { label: string; primary: boolean };
+// Post della community: activity da 1 a 3 (quanti post ha l'utente), recent = pubblicato da poco
+export type MapPost = { id: string; lat: number; lng: number; color: string; name: string; text: string; ago: string; activity: 1 | 2 | 3; recent: boolean };
 
 const userIcon = L.divIcon({ className: '', html: '<span class="es-pin-user"></span>', iconSize: [20, 20], iconAnchor: [10, 10] });
 
@@ -25,9 +27,20 @@ function storeIcon(store: Store, highlight: Highlight | undefined) {
   });
 }
 
-function FitView({ center, focus }: { center: Located; focus: Store[] }) {
+function postIcon(post: MapPost) {
+  const size = [0, 34, 42, 50][post.activity]!;
+  return L.divIcon({
+    className: '',
+    html: `<span class="es-pin-post${post.recent ? ' es-pin-post--recent' : ''}" style="--member:${post.color};width:${size}px;height:${size}px"><img src="/icon-192.png" alt="" /></span>`,
+    iconSize: [size, size],
+    iconAnchor: [size / 2, size / 2],
+    popupAnchor: [0, -size / 2],
+  });
+}
+
+function FitView({ center, focus }: { center: Located; focus: { id: string; lat: number; lng: number }[] }) {
   const map = useMap();
-  const key = `${center.lat.toFixed(4)},${center.lng.toFixed(4)}|${focus.map(store => store.id).join(',')}`;
+  const key = `${center.lat.toFixed(4)},${center.lng.toFixed(4)}|${focus.map(point => point.id).join(',')}`;
   useEffect(() => {
     if (!focus.length) { map.setView(center, 15); return; }
     map.fitBounds(L.latLngBounds([center, ...focus].map(point => [point.lat, point.lng])), { padding: [48, 48], maxZoom: 16 });
@@ -35,8 +48,8 @@ function FitView({ center, focus }: { center: Located; focus: Store[] }) {
   return null;
 }
 
-export default function LeafletMap({ center, stores, highlights }: { center: Located; stores: Store[]; highlights: Map<string, Highlight> }) {
-  const focus = stores.filter(store => highlights.has(store.id));
+export default function LeafletMap({ center, stores, highlights, posts = [] }: { center: Located; stores: Store[]; highlights: Map<string, Highlight>; posts?: MapPost[] | undefined }) {
+  const focus = [...stores.filter(store => highlights.has(store.id)), ...posts];
   return (
     <MapContainer center={center} zoom={15} scrollWheelZoom={false} className="h-full w-full" aria-label="Mappa dei negozi vicini">
       <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
@@ -56,6 +69,14 @@ export default function LeafletMap({ center, stores, highlights }: { center: Loc
           </Marker>
         );
       })}
+      {posts.map(post => (
+        <Marker key={post.id} position={post} icon={postIcon(post)} title={post.name} zIndexOffset={post.recent ? 1800 : 1200}>
+          <Popup>
+            <strong>{post.name}</strong> · {post.ago}
+            <br />{post.text}
+          </Popup>
+        </Marker>
+      ))}
     </MapContainer>
   );
 }

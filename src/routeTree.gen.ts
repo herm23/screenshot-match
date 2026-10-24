@@ -10,17 +10,13 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as MappaRouteImport } from './routes/mappa'
 import { Route as MicrofonoRouteImport } from './routes/microfono'
+import { Route as PortafoglioRouteImport } from './routes/portafoglio'
+import { Route as SocialRouteImport } from './routes/social'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MappaRoute = MappaRouteImport.update({
-  id: '/mappa',
-  path: '/mappa',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MicrofonoRoute = MicrofonoRouteImport.update({
@@ -28,35 +24,49 @@ const MicrofonoRoute = MicrofonoRouteImport.update({
   path: '/microfono',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PortafoglioRoute = PortafoglioRouteImport.update({
+  id: '/portafoglio',
+  path: '/portafoglio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SocialRoute = SocialRouteImport.update({
+  id: '/social',
+  path: '/social',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/mappa': typeof MappaRoute
   '/microfono': typeof MicrofonoRoute
+  '/portafoglio': typeof PortafoglioRoute
+  '/social': typeof SocialRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/mappa': typeof MappaRoute
   '/microfono': typeof MicrofonoRoute
+  '/portafoglio': typeof PortafoglioRoute
+  '/social': typeof SocialRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/mappa': typeof MappaRoute
   '/microfono': typeof MicrofonoRoute
+  '/portafoglio': typeof PortafoglioRoute
+  '/social': typeof SocialRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/mappa' | '/microfono'
+  fullPaths: '/' | '/microfono' | '/portafoglio' | '/social'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/mappa' | '/microfono'
-  id: '__root__' | '/' | '/mappa' | '/microfono'
+  to: '/' | '/microfono' | '/portafoglio' | '/social'
+  id: '__root__' | '/' | '/microfono' | '/portafoglio' | '/social'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  MappaRoute: typeof MappaRoute
   MicrofonoRoute: typeof MicrofonoRoute
+  PortafoglioRoute: typeof PortafoglioRoute
+  SocialRoute: typeof SocialRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -68,13 +78,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/mappa': {
-      id: '/mappa'
-      path: '/mappa'
-      fullPath: '/mappa'
-      preLoaderRoute: typeof MappaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/microfono': {
       id: '/microfono'
       path: '/microfono'
@@ -82,13 +85,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MicrofonoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/portafoglio': {
+      id: '/portafoglio'
+      path: '/portafoglio'
+      fullPath: '/portafoglio'
+      preLoaderRoute: typeof PortafoglioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/social': {
+      id: '/social'
+      path: '/social'
+      fullPath: '/social'
+      preLoaderRoute: typeof SocialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  MappaRoute: MappaRoute,
   MicrofonoRoute: MicrofonoRoute,
+  PortafoglioRoute: PortafoglioRoute,
+  SocialRoute: SocialRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

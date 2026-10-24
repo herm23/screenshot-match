@@ -26,7 +26,7 @@ npm run dev    # http://localhost:5173
 npm test
 ```
 
-No login or API keys are needed (see `AGENTS.md`).
+No login or API keys are needed (see `AGENTS.md`). Shopcoin wallet and posts are a demo: they are stored only in the browser, and the other community members are simulated.
 
 Data sources:
 - Prices: [Open Prices](https://prices.openfoodfacts.org) (Open Food Facts, ODbL). Products without a recent reading show an estimated price, labelled as such.

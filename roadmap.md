@@ -1,6 +1,7 @@
 # Easy Shop
 
-- [ ] Fase 1: posizione IP automatica, cache di sessione e correzione prioritaria; fermarsi per verifica utente.
+- [x] Fase 1: implementati posizione IP automatica, cache di sessione e correzione prioritaria; 13 test passati e fallback verificato nell'app.
+- [ ] Verifica utente Fase 1: IP reale e mappa su origine autorizzata; assenti header IP nel sandbox e account registrati.
 - [ ] Fasi 2–7: attendono verifica e autorizzazione dell'utente dopo ogni fase.
 
 - [x] Confermare le dipendenze Google Maps e l'accesso richiesto per le ricerche.

@@ -121,6 +121,7 @@ export function useShoppingLocation(userId: string | undefined) {
 
   const askLocation = () => {
     if (permission === 'denied') { setCorrectionOpen(true); return; }
+    freshPrecise.current = false;
     setLocationError(''); precise(++choiceVersion.current);
   };
   const searchAddress = async (address: string) => {

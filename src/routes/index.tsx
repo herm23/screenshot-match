@@ -7,9 +7,9 @@ import { useDictation } from '@/hooks/use-dictation';
 import { useShoppingAuth } from '@/features/shopping/AuthProvider';
 import { ShoppingList } from '@/features/shopping/ShoppingList';
 import { SupermarketMap } from '@/features/shopping/SupermarketMap';
-import type { Coordinates, ShoppingItem, Supermarket } from '@/features/shopping/models';
+import type { ShoppingItem } from '@/features/shopping/models';
 import { extractShoppingList, saveShoppingList, saveProfile } from '@/lib/shopping.functions';
-import { locateAddress, nearbySupermarkets } from '@/lib/maps.functions';
+import { useShoppingLocation } from '@/hooks/use-shopping-location';
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,12 +32,7 @@ function Index() {
   const [exampleIdx, setExampleIdx] = useState(0);
   const [searched, setSearched] = useState<string | null>(null);
   const [items, setItems] = useState<ShoppingItem[]>([]);
-  const [center, setCenter] = useState<Coordinates | null>(null);
-  const [locationLabel, setLocationLabel] = useState('');
-  const [places, setPlaces] = useState<Supermarket[]>([]);
   const [mapOpen, setMapOpen] = useState(false);
-  const [mapLoading, setMapLoading] = useState(false);
-  const [mapError, setMapError] = useState('');
   const [address, setAddress] = useState('');
   const [generating, setGenerating] = useState(false);
   const [listError, setListError] = useState('');
@@ -52,12 +47,12 @@ function Index() {
   const pendingSave = useRef<ShoppingItem[] | null>(null);
   const saving = useRef(false);
   const auth = useShoppingAuth();
+  const location = useShoppingLocation(auth.user?.id);
+  const { center, locationLabel, places, loading: mapLoading, error: mapError } = location;
   const dictation = useDictation(text, setText);
   const extract = useServerFn(extractShoppingList);
   const save = useServerFn(saveShoppingList);
   const updateProfile = useServerFn(saveProfile);
-  const nearby = useServerFn(nearbySupermarkets);
-  const geocode = useServerFn(locateAddress);
   useEffect(() => {
     const t = setInterval(() => setExampleIdx((i) => (i + 1) % EXAMPLES.length), 3000);
     return () => clearInterval(t);
@@ -65,37 +60,16 @@ function Index() {
   useEffect(() => { setItems(auth.savedItems); }, [auth.savedItems]);
   useEffect(() => {
     requestVersion.current += 1;
-    setCenter(null); setPlaces([]); setLocationLabel(''); setMapError(''); setMapLoading(false);
     setText(''); setSearched(null); setListError(''); setSaveStatus(''); pendingSave.current = null;
   }, [auth.user?.id]);
   const scrollTo = (element: HTMLElement | null) => element?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
-  const searchNearby = async (position: Coordinates, label: string, version: number) => {
-    if (version !== requestVersion.current) return;
-    setCenter(position); setLocationLabel(label); setPlaces([]);
-    if (!auth.user) { setMapLoading(false); return; }
-    try { const results = await nearby({ data: position }); if (version === requestVersion.current) setPlaces(results); }
-    catch (error) { if (version === requestVersion.current) setMapError(error instanceof Error ? error.message : 'Non riesco a cercare i supermercati. Riprova.'); }
-    finally { if (version === requestVersion.current) setMapLoading(false); }
-  };
   const askLocation = () => {
-    setMapOpen(true); setMapError(''); setPlaces([]);
+    setMapOpen(true);
     requestAnimationFrame(() => scrollTo(mapSection.current));
-    const version = ++requestVersion.current;
-    if (!("geolocation" in navigator)) { setMapError('La posizione non è disponibile in questo browser. Inserisci una città o un indirizzo.'); return; }
-    setMapLoading(true);
-    navigator.geolocation.getCurrentPosition(
-      pos => { void searchNearby({ lat: pos.coords.latitude, lng: pos.coords.longitude }, 'La tua posizione', version); },
-      error => { if (version !== requestVersion.current) return; setMapLoading(false); setMapError(error.code === 1 ? 'Permesso posizione negato. Inserisci una città o un indirizzo.' : 'Non riesco a trovare la tua posizione. Inserisci una città o un indirizzo.'); },
-      { timeout: 12000, maximumAge: 60000 },
-    );
+    location.askLocation();
   };
-  const searchAddress = async () => {
-    if (!auth.user || !address.trim()) return;
-    const version = ++requestVersion.current;
-    setMapLoading(true); setMapError('');
-    try { const position = await geocode({ data: { address } }); await searchNearby({ lat: position.lat, lng: position.lng }, position.label, version); }
-    catch (error) { if (version === requestVersion.current) { setMapError(error instanceof Error ? error.message : 'Indirizzo non disponibile.'); setMapLoading(false); } }
-  };
+  const searchAddress = () => location.searchAddress(address);
+  const correctLocation = () => { location.setCorrectionOpen(true); setMapOpen(true); requestAnimationFrame(() => scrollTo(mapSection.current)); };
   const flushSave = async () => {
     if (saving.current || !auth.user) return;
     saving.current = true;
@@ -145,21 +119,22 @@ function Index() {
               Easy <span className="font-serif text-[1.1em] font-normal italic">Shop</span>
             </h1>
             {locationLabel && (
-              <p className="label-mono animate-rise mt-3 inline-flex items-center gap-1.5 text-muted-foreground">
+              <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1"><p className="label-mono animate-rise inline-flex items-center gap-1.5 text-muted-foreground">
                 <span
                   className="size-1.5 rounded-full bg-primary"
                 />
                 {locationLabel}
-              </p>
+              </p>{location.estimated && <Button variant="link" className="h-auto px-0 py-1 text-sm" onClick={correctLocation}>Non è corretta?</Button>}</div>
             )}
+            {location.estimating && <p role="status" className="mt-3 text-sm text-muted-foreground">Stimo la posizione…</p>}
           </div>
           <Button
             type="button"
-            onClick={askLocation}
+            onClick={() => { setMapOpen(true); requestAnimationFrame(() => scrollTo(mapSection.current)); }}
             variant="outline"
             disabled={mapLoading}
             aria-label="Mappe"
-            title="Mappe: usa la mia posizione"
+            title="Apri la mappa"
             className="h-12 shrink-0 px-3"
           >
             {mapLoading ? <LoaderCircle className="animate-spin" /> : <MapPin className="size-5" />}<span className="hidden sm:inline">Mappe</span>
@@ -217,11 +192,13 @@ function Index() {
         {listError && <p role="alert" className="mt-3 text-sm text-destructive">{listError}</p>}
       </section>
 
-      {mapOpen && <div ref={mapSection} className="mx-auto mt-6 w-full max-w-[640px] scroll-mt-6">
-        <div className="mb-3 flex items-center justify-between gap-3"><h2 className="font-display text-xl font-bold">Supermercati vicini</h2><Button variant="ghost" size="icon" aria-label="Chiudi mappa" onClick={() => setMapOpen(false)}><X /></Button></div>
+      {(mapOpen || location.correctionOpen) && <div ref={mapSection} className="mx-auto mt-6 w-full max-w-[640px] scroll-mt-6">
+        <div className="mb-3 flex items-center justify-between gap-3"><h2 className="font-display text-xl font-bold">Supermercati vicini</h2><Button variant="ghost" size="icon" aria-label="Chiudi mappa" onClick={() => { setMapOpen(false); location.setCorrectionOpen(false); }}><X /></Button></div>
         <SupermarketMap center={center} places={places} loading={mapLoading} locationLabel={locationLabel} />
         {mapError && <p role="alert" className="mt-3 text-sm text-destructive">{mapError}</p>}
+        {locationLabel ? <p className="mt-3 text-sm text-muted-foreground">{locationLabel}</p> : !location.estimating && <p className="mt-3 text-sm text-muted-foreground">Posizione stimata non disponibile. Inserisci una città o usa la posizione precisa.</p>}
         <form onSubmit={event => { event.preventDefault(); void searchAddress(); }} className="mt-3 flex gap-2"><input aria-label="Città o indirizzo" value={address} maxLength={200} onChange={event => setAddress(event.target.value)} placeholder="Città o indirizzo" className="min-w-0 flex-1 rounded-md border bg-surface px-3 py-2 text-sm" /><Button type="submit" disabled={!address.trim() || mapLoading || !auth.user}>Cerca</Button></form>
+        <Button variant="outline" className="mt-3" onClick={askLocation} disabled={mapLoading}><MapPin />Usa posizione precisa</Button>
         {!auth.user && <Button className="mt-3 w-full" variant="outline" onClick={() => void auth.signIn()}>Accedi con Google per cercare supermercati</Button>}
       </div>}
 
@@ -247,7 +224,7 @@ function Index() {
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3"><h2 className="font-display text-3xl font-bold">Lista della spesa</h2><span role="status" className="text-sm text-muted-foreground">{saveStatus}</span></div>
         <div className="grid items-start gap-8 md:grid-cols-2">
           <div><ShoppingList items={items} onChange={changeItems} />{listError && <div className="mt-3"><p role="alert" className="text-sm text-destructive">{listError}</p>{auth.user && <Button variant="outline" className="mt-2" onClick={() => { pendingSave.current = items; setListError(''); void flushSave(); }}>Riprova a salvare</Button>}</div>}</div>
-          <aside className="md:sticky md:top-6"><div className="mb-3 flex items-center justify-between"><h3 className="font-medium">Dove fare la spesa</h3><Button variant="outline" size="sm" onClick={askLocation} disabled={mapLoading}><MapPin />Posizione</Button></div><SupermarketMap center={center} places={places} loading={mapLoading} locationLabel={locationLabel} />{mapError && <p role="alert" className="mt-3 text-sm text-destructive">{mapError}</p>}<Button variant="link" className="mt-2 h-auto px-0 whitespace-normal" onClick={() => { setMapOpen(true); requestAnimationFrame(() => scrollTo(mapSection.current)); }}>Inserisci città o indirizzo</Button></aside>
+          <aside className="md:sticky md:top-6"><div className="mb-3 flex items-center justify-between"><h3 className="font-medium">Dove fare la spesa</h3><Button variant="outline" size="sm" onClick={askLocation} disabled={mapLoading}><MapPin />Posizione</Button></div><SupermarketMap center={center} places={places} loading={mapLoading} locationLabel={locationLabel} />{mapError && <p role="alert" className="mt-3 text-sm text-destructive">{mapError}</p>}<Button variant="link" className="mt-2 h-auto px-0 whitespace-normal" onClick={correctLocation}>Inserisci città o indirizzo</Button></aside>
         </div>
       </section>
     </main>

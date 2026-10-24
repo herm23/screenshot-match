@@ -6,6 +6,9 @@ export const itemSchema = extractedItemSchema.extend({ id: z.string().uuid(), ch
 export const itemsSchema = z.array(itemSchema).max(100);
 export type ShoppingItem = z.infer<typeof itemSchema>;
 export type Coordinates = { lat: number; lng: number };
+export const estimatedLocationSchema = z.object({ lat: z.number().min(-90).max(90), lng: z.number().min(-180).max(180), city: z.string().trim().min(1).max(200), region: z.string().max(200) });
+export type EstimatedLocation = z.infer<typeof estimatedLocationSchema>;
+export type IpLocationResult = { location: EstimatedLocation | null };
 export type Supermarket = { id: string; name: string; address: string; lat: number; lng: number; openNow: boolean | null };
 export function appendTranscript(base: string, transcript: string) {
   return [base.trimEnd(), transcript.trim()].filter(Boolean).join(' ');

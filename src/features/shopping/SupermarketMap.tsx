@@ -27,8 +27,6 @@ export function SupermarketMap({ center, places, loading, locationLabel }: { cen
   const [error, setError] = useState('');
   useEffect(() => {
     if (!center) return;
-    // Maps is intentionally not requested on the agent sandbox's unauthorized origin.
-    if (window.location.hostname === 'localhost') { setError('La mappa è disponibile sul sito autorizzato.'); return; }
     let cancelled = false;
     void loadMaps().then(() => {
       if (cancelled || !container.current) return;
@@ -41,7 +39,9 @@ export function SupermarketMap({ center, places, loading, locationLabel }: { cen
     if (!ready || !map.current || !center) return;
     const currentMap = map.current;
     currentMap.setCenter(center);
-    const primary = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
+    const swatch = document.createElement('span');
+    swatch.className = 'text-primary'; document.body.appendChild(swatch);
+    const primary = getComputedStyle(swatch).color; swatch.remove();
     const userMarker = new google.maps.Marker({ map: currentMap, position: center, title: locationLabel || 'La tua posizione', zIndex: 100, icon: { path: google.maps.SymbolPath.CIRCLE, scale: 9, fillColor: primary, fillOpacity: 1, strokeWeight: 3, strokeColor: getComputedStyle(document.body).backgroundColor } });
     const info = new google.maps.InfoWindow();
     const markers = places.map(place => {

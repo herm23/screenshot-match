@@ -9,7 +9,11 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 
-- Keep shared shopping data contracts in `src/features/shopping/models.ts`, dictation in its hook, and a single reusable map renderer (`SupermarketMap`, which lazy-loads Leaflet client-only).
-- Pages: `/` (home with the Microfono and Mappa cards), `/microfono` (dictation, shopping list, offers) and `/mappa` (OpenStreetMap, nearby supermarkets). They share text, list, position and nearby results through `ShoppingProvider` in `__root.tsx`, so navigating between them keeps the state.
-- This is a demo with fake data: no login, no Lovable Cloud, no API keys. Product extraction, offers, supermarkets and geocoding are simulated in `src/features/shopping/fake-data.ts`; dictation and geolocation use the real browser APIs.
-- Visual style mirrors the separate Blazor project (HackatonProj): dark by default with a light/dark toggle, orange/violet accents, Space Grotesk + Inter. Theme tokens live in `src/styles.css`.
+The app is **SHOPT** (logo in `src/assets`, colours from the logo in `src/styles.css`). No login, no Lovable Cloud, no API keys.
+
+- `src/features/shopping/catalog.ts`: generic products, the four lists (alimentari, casa, elettronica, faidate), chains and the store types that sell each list. Shared with `scripts/update-catalog.ts`, so no `@/` imports there.
+- `src/features/shopping/data/open-prices.json` and `logos/`: real prices from Open Prices (ODbL) and chain logos, regenerated with `node --experimental-strip-types scripts/update-catalog.ts`. Prices without a real reading are estimated in `pricing.ts` and must stay labelled as estimates in the UI.
+- `pricing.ts`: one store per list. The recommended store is the nearby one with the most products, nearest on ties; the list total counts only what can be bought there.
+- `places.ts`: real stores from OpenStreetMap via Nominatim (at most one request per second, sequential, supermarkets first); missing store types are filled with demo stores marked as such. Overpass was too slow for live use.
+- `geo.ts` and `ShoppingProvider.tsx`: automatic location (last saved position, IP estimate while waiting, then high-accuracy `watchPosition` until ±25 m), street names and address search through Nominatim.
+- Pages: `/` (home), `/microfono` (dictation or keyboard, Enter adds to the list, lists by category, product pop-up with offers) and `/mappa` (map highlighting the recommended stores). State is shared through `ShoppingProvider` in `__root.tsx`.

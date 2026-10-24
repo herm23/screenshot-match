@@ -34,21 +34,22 @@
   --color-ring: var(--ring);
 }
 
-/* Tema ripreso dal progetto Blazor (HackatonProj): scuro di default, accento arancione e viola */
+/* Colori del logo SHOPT: blu navy #123052, arancione #e87823, giallo #f2b921, rosso #c7392d.
+   Struttura del tema ripresa dal progetto Blazor (HackatonProj): scuro di default. */
 :root {
   --radius: 1rem;
-  --background: #0b0b10;
-  --surface: #15151d;
-  --surface-hover: #1c1c27;
+  --background: #08111f;
+  --surface: #0f1d33;
+  --surface-hover: #15284a;
   --foreground: #f4f2ee;
-  --muted-foreground: #9a98a6;
-  --primary: #ff6a3d;
-  --accent-2: #8a5cf6;
-  --glow-1: rgba(255, 106, 61, 0.18);
-  --glow-2: rgba(138, 92, 246, 0.18);
+  --muted-foreground: #9aa8bf;
+  --primary: #f08a2e;
+  --accent-2: #f2b921;
+  --glow-1: rgba(232, 120, 35, 0.2);
+  --glow-2: rgba(42, 92, 168, 0.35);
   --shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
-  --border: rgba(255, 255, 255, 0.09);
-  --destructive: #ff6b6b;
+  --border: rgba(255, 255, 255, 0.1);
+  --destructive: #ff7b6b;
   --muted: var(--surface-hover);
 
   --card: var(--surface);
@@ -66,19 +67,19 @@
 }
 
 :root.light {
-  --background: #f6f3ee;
+  --background: #f7f4ee;
   --surface: #ffffff;
-  --surface-hover: #fffaf5;
-  --foreground: #16141f;
-  --muted-foreground: #615e6e;
-  --primary: #e8501f;
-  --accent-2: #6d3fe0;
-  --glow-1: rgba(255, 106, 61, 0.16);
-  --glow-2: rgba(138, 92, 246, 0.12);
-  --shadow: 0 20px 45px rgba(40, 30, 20, 0.12);
-  --border: rgba(20, 18, 30, 0.1);
-  --destructive: #c92a2a;
-  --muted: #f1ede6;
+  --surface-hover: #fff8f0;
+  --foreground: #123052;
+  --muted-foreground: #556780;
+  --primary: #e2701b;
+  --accent-2: #c7392d;
+  --glow-1: rgba(232, 120, 35, 0.16);
+  --glow-2: rgba(242, 185, 33, 0.18);
+  --shadow: 0 20px 45px rgba(18, 48, 82, 0.12);
+  --border: rgba(18, 48, 82, 0.12);
+  --destructive: #c7392d;
+  --muted: #f1ece4;
 }
 
 @keyframes mic-pulse {
@@ -116,6 +117,9 @@
 
 @layer base {
   * { border-color: var(--color-border); }
+  html {
+    scrollbar-color: color-mix(in srgb, var(--muted-foreground) 50%, transparent) transparent;
+  }
   html, body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -233,12 +237,12 @@
     border-radius: 1.25rem;
   }
   .tool-icon--mic {
-    background: linear-gradient(140deg, #ff9a4d, #ff4d4d 60%, #d6336c);
-    box-shadow: 0 18px 40px rgba(255, 77, 77, 0.35);
+    background: linear-gradient(140deg, #f2b921, #e87823 55%, #c7392d);
+    box-shadow: 0 18px 40px rgba(232, 120, 35, 0.35);
   }
   .tool-icon--map {
-    background: linear-gradient(140deg, #4dd0e1, #4c6ef5 55%, #8a5cf6);
-    box-shadow: 0 18px 40px rgba(76, 110, 245, 0.35);
+    background: linear-gradient(140deg, #3f7bd1, #1d4a86 55%, #123052);
+    box-shadow: 0 18px 40px rgba(29, 74, 134, 0.4);
   }
   .tool-card:hover .tool-icon { transform: scale(1.06) rotate(-4deg); }
   .tool-label {
@@ -283,8 +287,8 @@
   .es-pin-store {
     display: grid;
     place-items: center;
-    width: 34px;
-    height: 34px;
+    width: 32px;
+    height: 32px;
     border-radius: 50% 50% 50% 0;
     transform: rotate(-45deg);
     background: var(--chain);
@@ -293,11 +297,42 @@
     color: #fff;
     font: 700 14px/1 var(--font-display);
   }
-  .es-pin-store > span { transform: rotate(45deg); }
+  .es-pin-store > span {
+    display: grid;
+    place-items: center;
+    width: 72%;
+    height: 72%;
+    border-radius: 50%;
+    background: #fff;
+    overflow: hidden;
+    transform: rotate(45deg);
+  }
+  .es-pin-store img { width: 82%; height: 82%; object-fit: contain; }
+  .es-pin-store b { color: var(--chain); font-weight: 700; }
   .es-pin-store--best {
-    background: linear-gradient(140deg, #ff9a4d, var(--primary));
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(140deg, #f2b921, var(--primary));
     outline: 3px solid color-mix(in srgb, var(--primary) 40%, transparent);
   }
+  .es-pin-store--primary {
+    width: 46px;
+    height: 46px;
+    outline-width: 5px;
+  }
+  .es-accuracy {
+    fill: var(--accent-2);
+    fill-opacity: 0.12;
+    stroke: var(--accent-2);
+    stroke-opacity: 0.6;
+    stroke-width: 1.5;
+  }
+
+  /* Logo: versione con scritta chiara sul tema scuro */
+  .logo-light { display: none; }
+  .logo-dark { display: block; }
+  :root.light .logo-light { display: block; }
+  :root.light .logo-dark { display: none; }
   :root:not(.light) .es-map .leaflet-tile-pane {
     filter: invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9);
   }

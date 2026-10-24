@@ -1,4 +1,4 @@
-# Easy Shop
+# SHOPT
 
 - [x] Confermare le dipendenze Google Maps e l'accesso richiesto per le ricerche.
 - [x] Collegare Google Maps e attivare Lovable Cloud per le funzioni richieste.

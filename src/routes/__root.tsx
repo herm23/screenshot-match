@@ -12,9 +12,10 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { ShoppingBasket } from "lucide-react";
 import { ShoppingProvider } from '@/features/shopping/ShoppingProvider';
 import { ThemeToggle, THEME_INIT_SCRIPT } from '@/components/ThemeToggle';
+import { Logo } from '@/components/Logo';
+import { LocationStatus } from '@/features/shopping/LocationStatus';
 
 function NotFoundComponent() {
   return (
@@ -92,7 +93,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
+      { rel: "apple-touch-icon", href: "/icon-192.png" },
     ],
     scripts: [{ children: THEME_INIT_SCRIPT }],
   }),
@@ -124,11 +126,14 @@ function RootComponent() {
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <ShoppingProvider>
         <div className="flex min-h-screen flex-col">
-          <nav className="es-nav sticky top-0 z-[1000] flex items-center justify-between border-b px-4 py-3 md:px-6">
-            <Link to="/" className="flex items-center gap-2 font-display text-lg font-bold text-foreground">
-              <ShoppingBasket className="size-5 text-primary" />Easy Shop
+          <nav className="es-nav sticky top-0 z-40 flex items-center justify-between gap-3 border-b px-4 py-3 md:px-6">
+            <Link to="/" aria-label="SHOPT, torna alla home" className="shrink-0">
+              <Logo className="w-28 sm:w-32" />
             </Link>
-            <ThemeToggle />
+            <div className="flex min-w-0 items-center gap-2">
+              <LocationStatus compact />
+              <ThemeToggle />
+            </div>
           </nav>
           <main className="flex flex-1 flex-col">
             <Outlet />

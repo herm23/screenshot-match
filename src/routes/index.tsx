@@ -1,13 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, MapPinned, Mic } from "lucide-react";
 import { useShopping } from '@/features/shopping/ShoppingProvider';
+import { Logo } from '@/components/Logo';
+import { formatPrice } from '@/features/shopping/pricing';
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Easy Shop — Le offerte dei supermercati vicino a te" },
-      { name: "description", content: "Dimmi cosa vuoi comprare e trova le migliori offerte nei supermercati vicini." },
-      { property: "og:title", content: "Easy Shop — Le offerte vicino a te" },
+      { title: "SHOPT — La spesa più conveniente vicino a te" },
+      { name: "description", content: "Detta o scrivi la spesa: SHOPT la divide per negozio, confronta i prezzi e ti dice dove comprare tutto vicino a te." },
+      { property: "og:title", content: "SHOPT — La spesa più conveniente vicino a te" },
       { property: "og:description", content: "Scrivi o detta la tua spesa e scopri le offerte dei supermercati vicini." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -17,16 +19,16 @@ export const Route = createFileRoute("/")({
 });
 
 const TOOLS = [
-  { to: '/microfono', index: '01', label: 'Microfono', hint: 'Detta o scrivi la spesa', icon: Mic, iconClass: 'tool-icon--mic' },
-  { to: '/mappa', index: '02', label: 'Mappa', hint: 'Supermercati entro 2 km', icon: MapPinned, iconClass: 'tool-icon--map' },
+  { to: '/microfono', index: '01', label: 'La tua spesa', hint: 'Detta, scrivi e confronta i prezzi', icon: Mic, iconClass: 'tool-icon--mic' },
+  { to: '/mappa', index: '02', label: 'Mappa', hint: 'Il negozio più vicino con tutto', icon: MapPinned, iconClass: 'tool-icon--map' },
 ] as const;
 
 function Index() {
-  const { items } = useShopping();
+  const { items, plan } = useShopping();
   return (
     <section className="mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center px-4 py-16 text-center">
-      <span className="es-eyebrow animate-rise mb-6">Easy Shop</span>
-      <h1 className="es-title text-gradient animate-rise mb-4">Cosa vuoi comprare?</h1>
+      <h1 className="animate-rise mb-8 w-full max-w-md sm:max-w-lg"><Logo className="w-full" /></h1>
+      <p className="es-title text-gradient animate-rise mb-4">Cosa vuoi comprare?</p>
       <p className="mx-auto mb-8 max-w-[34rem] text-lg text-muted-foreground">Scegli da dove partire: la tua voce o i supermercati vicino a te.</p>
 
       <div className="grid w-full max-w-3xl gap-6 sm:grid-cols-2">
@@ -43,7 +45,7 @@ function Index() {
 
       {items.length > 0 && (
         <Link to="/microfono" className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline">
-          La tua lista: {items.length} {items.length === 1 ? 'prodotto' : 'prodotti'}<ArrowRight className="size-4" />
+          La tua lista: {items.length} {items.length === 1 ? 'prodotto' : 'prodotti'} · {formatPrice(plan.total)}<ArrowRight className="size-4" />
         </Link>
       )}
     </section>

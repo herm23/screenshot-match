@@ -1,6 +1,6 @@
-# Screenshot Match
+# SHOPT
 
-Implement exactly the screenshot and nothing else
+Detta o scrivi la spesa: SHOPT la divide per tipo di negozio, confronta i prezzi e ti indica il negozio vicino dove comprare tutto.
 
 This project was built with [Lovable](https://lovable.dev).
 
@@ -26,4 +26,11 @@ npm run dev    # http://localhost:5173
 npm test
 ```
 
-The app uses fake data only (see `AGENTS.md`): no login or API keys are needed.
+No login or API keys are needed (see `AGENTS.md`).
+
+Data sources:
+- Prices: [Open Prices](https://prices.openfoodfacts.org) (Open Food Facts, ODbL). Products without a recent reading show an estimated price, labelled as such.
+- Stores, street names and address search: [OpenStreetMap](https://www.openstreetmap.org/copyright) via Nominatim (max 1 request/s).
+- Approximate location while waiting for GPS: GeoJS / ipapi.co.
+
+To refresh prices and logos: `node --experimental-strip-types scripts/update-catalog.ts`.

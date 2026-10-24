@@ -1,0 +1,1531 @@
+{
+ "source": "Open Prices (prices.openfoodfacts.org), ODbL",
+ "generatedAt": "2026-10-24",
+ "offers": {
+  "bevanda-vegetale": {
+   "carrefour": {
+    "name": "Barista Soia",
+    "brand": "Carrefour",
+    "price": 1.79,
+    "fullPrice": null,
+    "date": "2024-11-30",
+    "size": {
+     "amount": 1,
+     "dim": "l"
+    },
+    "store": "Carrefour, Torino"
+   },
+   "lidl": {
+    "name": "Bevanda di soia",
+    "brand": "Vemondo",
+    "price": 0.99,
+    "fullPrice": null,
+    "date": "2024-11-30",
+    "size": {
+     "amount": 1,
+     "dim": "l"
+    },
+    "store": "Lidl, Torino"
+   },
+   "pam": {
+    "name": "Soia Bevanda Vegetale - Leche Bebida De Soja",
+    "brand": "Pam",
+    "price": 1.25,
+    "fullPrice": null,
+    "date": "2024-11-30",
+    "size": null,
+    "store": "Pam, Torino"
+   },
+   "esselunga": {
+    "name": "Bevanda vegetale soia",
+    "brand": "Abafoods",
+    "price": 1.09,
+    "fullPrice": null,
+    "date": "2025-04-18",
+    "size": {
+     "amount": 1,
+     "dim": "l"
+    },
+    "store": "Esselunga, Milano"
+   },
+   "coop": {
+    "name": "Soia con calcio",
+    "brand": "Coop",
+    "price": 0.99,
+    "fullPrice": null,
+    "date": "2026-10-06",
+    "size": {
+     "amount": 1,
+     "dim": "l"
+    },
+    "store": "Coop, Montecagnoletto"
+   }
+  },
+  "pasta": {
+   "carrefour": {
+    "name": "Ditalini Rigati",
+    "brand": "Barilla",
+    "price": 1.15,
+    "fullPrice": null,
+    "date": "2024-11-29",
+    "size": {
+     "amount": 0.5,
+     "dim": "kg"
+    },
+    "store": "Carrefour Market, Torino"
+   },
+   "conad": {
+    "name": "Pasta Risoni n°26",
+    "brand": "Barilla",
+    "price": 1.03,
+    "fullPrice": null,
+    "date": "2025-12-07",
+    "size": {
+     "amount": 0.5,
+     "dim": "kg"
+    },
+    "store": "Conad, Roma"
+   },
+   "lidl": {
+    "name": "Penne Rigate Integrale",
+    "brand": "Barilla",
+    "price": 1.55,
+    "fullPrice": null,
+    "date": "2024-11-30",
+    "size": {
+     "amount": 0.5,
+     "dim": "kg"
+    },
+    "store": "Lidl, Torino"
+   },
+   "esselunga": {
+    "name": "Integrale Farfalle",
+    "brand": "Barilla",
+    "price": 1.15,
+    "fullPrice": null,
+    "date": "2026-08-30",
+    "size": {
+     "amount": 0.5,
+     "dim": "kg"
+    },
+    "store": "Esselunga, Marore"
+   },
+   "coop": {
+    "name": "spaghetti integrali biologici",
+    "brand": "vivi verde bio coop",
+    "price": 1.12,
+    "fullPrice": null,
+    "date": "2025-12-06",
+    "size": {
+     "amount": 0.5,
+     "dim": "kg"
+    },
+    "store": "Coop, Bagheria"
+   },
+   "md": {
+    "name": "Spaghetti integrali",
+    "brand": "MD",
+    "price": 0.85,
+    "fullPrice": null,
+    "date": "2025-01-05",
+    "size": {
+     "amount": 0.5,
+     "dim": "kg"
+    },
+    "store": "MD, Monterusciello"
+   }
+  },
+  "olio": {
+   "carrefour": {
+    "name": "Olio di oliva",
+    "brand": "Carrefour",
+    "price": 4.99,
+    "fullPrice": null,
+    "date": "2024-11-29",
+    "size": null,
+    "store": "Carrefour Market, Torino"
+   },
+   "conad": {
+    "name": "Olio Sasso",
+    "brand": "Sasso",
+    "price": 8.66,
+    "fullPrice": null,
+    "date": "2025-12-07",
+    "size": {
+     "amount": 1,
+     "dim": "l"
+    },
+    "store": "Conad, Roma"
+   },
+   "eurospin": {
+    "name": "Olio di oliva composto di oli di oliva raffinati e oli di oliva vergini",
+    "brand": "Eurospin",
+    "price": 3.99,
+    "fullPrice": 4.99,
+    "date": "2025-09-27",
+    "size": {
+     "amount": 1,
+     "dim": "l"
+    },
+    "store": "EuroSpin, Milano"
+   }
+  },
+  "crema-spalmabile": {
+   "carrefour": {
+    "name": "Nutella",
+    "brand": "Nutella Ferrero",
+    "price": 3.19,
+    "fullPrice": null,
+    "date": "2024-11-29",
+    "size": {
+     "amount": 0.22,
+     "dim": "kg"
+    },
+    "store": "Carrefour Market, Torino"
+   },
+   "lidl": {
+    "name": "Nutella",
+    "brand": "Nutella",
+    "price": 4.49,
+    "fullPrice": null,
+    "date": "2024-11-30",
+    "size": null,
+    "store": "Lidl, Torino"
+   },
+   "pam": {
+    "name": "Nutella Monoporzioni",
+    "brand": "Nutella",
+    "price": 1.6,
+    "fullPrice": null,
+    "date": "2024-11-30",
+    "size": {
+     "amount": 0.09,
+     "dim": "kg"
+    },
+    "store": "Pam, Torino"
+   },
+   "aldi": {
+    "name": "Crema spalmabile al pistacchio",
+    "brand": "Grandessa",
+    "price": 9.99,
+    "fullPrice": null,
+    "date": "2025-01-29",
+    "size": {
+     "amount": 0.6,
+     "dim": "kg"
+    },
+    "store": "Aldi, Bolzano - Bozen"
+   },
+   "penny": {
+    "name": "Nutella",
+    "brand": "Nutella",
+    "price": 4.99,
+    "fullPrice": null,
+    "date": "2026-10-08",
+    "size": null,
+    "store": "Penny Market, Vercelli"
+   },
+   "conad": {
+    "name": "Nutella Plant-Based",
+    "brand": "Ferrero",
+    "price": 4.49,
+    "fullPrice": null,
+    "date": "2024-10-11",
+    "size": {
+     "amount": 0.35,
+     "dim": "kg"
+    },
+    "store": "Conad, Bolzano - Bozen"
+   }
+  },
+  "cioccolato": {
+   "carrefour": {
+    "name": "Kinder chocolate Milk cocoa",
+    "brand": "Kinder",
+    "price": 1.79,
+    "fullPrice": null,
+    "date": "2024-11-29",
+    "size": null,
+    "store": "Carrefour Market, Torino"
+   },
+   "conad": {
+    "name": "Kinder Schokolade",
+    "brand": "Kinder",
+    "price": 5.25,
+    "fullPrice": null,
+    "date": "2025-12-07",
+    "size": {
+     "amount": 0.3,
+     "dim": "kg"
+    },
+    "store": "Conad, Roma"
+   },
+   "lidl": {
+    "name": "Fondentenero Cioccolato Extra Amaro 72%",
+    "brand": "Novi",
+    "price": 1.89,
+    "fullPrice": null,
+    "date": "2024-11-30",
+    "size": {
+     "amount": 0.1,
+     "dim": "kg"
+    },
+    "store": "Lidl, Torino"
+   },
+   "pam": {
+    "name": "snickers",
+    "brand": "Snickers",
+    "price": 2.2,
+    "fullPrice": null,
+    "date": "2024-11-30",
+    "size": {
+     "amount": 0.15,
+     "dim": "kg"
+    },
+    "store": "Pam, Cavoretto"
+   },
+   "esselunga": {
+    "name": "Cioccolato di modica I.G.P. 70%",
+    "brand": null,
+    "price": 2.42,
+    "fullPrice": null,
+    "date": "2026-09-02",
+    "size": {
+     "amount": 0.1,
+     "dim": "kg"
+    },
+    "store": "Esselunga, Pisa"
+   },
+   "md": {
+    "name": "Cioccolato al latte ripieno di crema al latte",
+    "brand": "MD",
+    "price": 1.29,
+    "fullPrice": null,
+    "date": "2024-12-12",
+    "size": null,
+    "store": "MD, Rentsch - Rencio"
+   }
+  },
+  "biscotti": {
+   "carrefour": {
+    "name": "Frollini con cioccolato",
+    "brand": "Carrefour",
+    "price": 1.95,
+    "fullPrice": null,
+    "date": "2024-11-29",
+    "size": {
+     "amount": 0.35,
+     "dim": "kg"
+    },
+    "store": "Carrefour Market, Torino"
+   },
+   "conad": {
+    "name": "Fette Biscottate al Malto d'Orzo",
+    "brand": "CONAD",
+    "price": 1.72,
+    "fullPrice": null,
+    "date": "2025-12-07",
+    "size": null,
+    "store": "Conad, Roma"
+   },
+   "lidl": {
+    "name": "Fette biscottate integrali",
+    "brand": "Gentilini",
+    "price": 1.79,
+    "fullPrice": null,
+    "date": "2026-09-05",
+    "size": {
+     "amount": 0.175,
+     "dim": "kg"
+    },
+    "store": "Lidl, Romanina"
+   },
+   "esselunga": {
+    "name": "Biscotti di grano saraceno",
+    "brand": "Balocco",
+    "price": 2.2,
+    "fullPrice": 2.59,
+    "date": "2024-05-16",
+    "size": {
+     "amount": 0.7,
+     "dim": "kg"
+    },
+    "store": "Esselunga, Sesto San Giovanni"
+   },
+   "eurospin": {
+    "name": "Wafer alla vaniglia",
+    "brand": "Dolciando Eurospin",
+    "price": 0.79,
+    "fullPrice": null,
+    "date": "2024-11-21",
+    "size": {
+     "amount": 0.2,
+     "dim": "kg"
+    },
+    "store": "EuroSpin, Rentsch - Rencio"
+   },
+   "aldi": {
+    "name": "Frollini cacao e nocciole",
+    "brand": null,
+    "price": 1.99,
+    "fullPrice": null,
+    "date": "2024-09-15",
+    "size": null,
+    "store": "ALDI, Bologna"
+   },
+   "coop": {
+    "name": "Wafers con crema nocciola",
+    "brand": "Coop",
+    "price": 1.89,
+    "fullPrice": null,
+    "date": "2026-05-05",
+    "size": {
+     "amount": 0.175,
+     "dim": "kg"
+    },
+    "store": "Coop, Rentsch - Rencio"
+   }
+  },
+  "patatine": {
+   "carrefour": {
+    "name": "Patatine Rustica",
+    "brand": "San Carlo",
+    "price": 2.95,
+    "fullPrice": null,
+    "date": "2024-11-29",
+    "size": null,
+    "store": "Carrefour Market, Torino"
+   },
+   "conad": {
+    "name": "Chips di riso con riso rosso gusto paprika",
+    "brand": "Gallo",
+    "price": 1.29,
+    "fullPrice": null,
+    "date": "2025-12-07",
+    "size": {
+     "amount": 0.04,
+     "dim": "kg"
+    },
+    "store": "Conad, Roma"
+   }
+  },
+  "latte": {
+   "carrefour": {
+    "name": "Latte Zymil Magro",
+    "brand": "parmalat",
+    "price": 1.09,
+    "fullPrice": null,
+    "date": "2026-09-05",
+    "size": {
+     "amount": 0.5,
+     "dim": "l"
+    },
+    "store": "Carrefour Market, Milano"
+   },
+   "conad": {
+    "name": "latte intero da agricoltura biologica",
+    "brand": "Centrale del Latte di Roma",
+    "price": 2.39,
+    "fullPrice": null,
+    "date": "2025-12-07",
+    "size": {
+     "amount": 1,
+     "dim": "l"
+    },
+    "store": "Conad, Roma"
+   },
+   "lidl": {
+    "name": "Latte intero",
+    "brand": "Latteria",
+    "price": 1.05,
+    "fullPrice": null,
+    "date": "2024-11-30",
+    "size": {
+     "amount": 1,
+     "dim": "l"
+    },
+    "store": "Lidl, Torino"
+   },
+   "pam": {
+    "name": "Latte UHT intero",
+    "brand": "Pam Panorama",
+    "price": 1.3,
+    "fullPrice": null,
+    "date": "2024-11-30",
+    "size": null,
+    "store": "Pam, Cavoretto"
+   },
+   "esselunga": {
+    "name": "Latte fresco intero Alta Qualità",
+    "brand": "Esselunga",
+    "price": 1.35,
+    "fullPrice": null,
+    "date": "2024-05-16",
+    "size": {
+     "amount": 1,
+     "dim": "l"
+    },
+    "store": "Esselunga, Sesto San Giovanni"
+   },
+   "eurospin": {
+    "name": "Latte Senza Lattosio UHT Alta conservazione",
+    "brand": "Amo Essere",
+    "price": 1.19,
+    "fullPrice": null,
+    "date": "2026-10-01",
+    "size": {
+     "amount": 1,
+     "dim": "l"
+    },
+    "store": "EuroSpin, Castel di Guido"
+   },
+   "coop": {
+    "name": "Latte fresco alta qualità Coop",
+    "brand": "Coop",
+    "price": 1.64,
+    "fullPrice": null,
+    "date": "2024-05-24",
+    "size": null,
+    "store": "Coop, Sesto San Giovanni"
+   }
+  },
+  "cereali": {
+   "carrefour": {
+    "name": "Kinder Cereali",
+    "brand": "Kinder",
+    "price": 3.39,
+    "fullPrice": null,
+    "date": "2024-11-29",
+    "size": {
+     "amount": 0.141,
+     "dim": "kg"
+    },
+    "store": "Carrefour Market, Torino"
+   },
+   "esselunga": {
+    "name": "Muesli con miglio avena e frutta",
+    "brand": "Colfiorito",
+    "price": 3.59,
+    "fullPrice": null,
+    "date": "2025-04-18",
+    "size": {
+     "amount": 0.28,
+     "dim": "kg"
+    },
+    "store": "Esselunga, Milano"
+   },
+   "md": {
+    "name": "cornflakes",
+    "brand": "fuchs",
+    "price": 1.39,
+    "fullPrice": null,
+    "date": "2024-12-27",
+    "size": {
+     "amount": 0.5,
+     "dim": "kg"
+    },
+    "store": "MD, Rentsch - Rencio"
+   },
+   "penny": {
+    "name": "Muesli con frutta",
+    "brand": "Penny",
+    "price": 1.49,
+    "fullPrice": 1.89,
+    "date": "2025-12-09",
+    "size": {
+     "amount": 0.375,
+     "dim": "kg"
+    },
+    "store": "Penny, Roma"
+   },
+   "conad": {
+    "name": "Fiocchi d’avena Bio",
+    "brand": "Vio Logic",
+    "price": 2.99,
+    "fullPrice": null,
+    "date": "2026-09-27",
+    "size": null,
+    "store": "Conad spesa facile, Monselice"
+   },
+   "lidl": {
+    "name": "Muesli con cioccolato al latte",
+    "brand": "Lidl",
+    "price": 3.35,
+    "fullPrice": null,
+    "date": "2026-10-03",
+    "size": {
+     "amount": 0.5,
+     "dim": "kg"
+    },
+    "store": "Lidl, Genova"
+   }
+  },
+  "passata": {
+   "conad": {
+    "name": "Passata di pomodoro",
+    "brand": "Sarchio",
+    "price": 2.23,
+    "fullPrice": null,
+    "date": "2025-12-07",
+    "size": {
+     "amount": 0.425,
+     "dim": "kg"
+    },
+    "store": "Conad, Roma"
+   },
+   "lidl": {
+    "name": "Sugo pomodoro e basilico",
+    "brand": "Lidl",
+    "price": 1.19,
+    "fullPrice": null,
+    "date": "2024-11-30",
+    "size": {
+     "amount": 0.27,
+     "dim": "kg"
+    },
+    "store": "Lidl, Torino"
+   },
+   "esselunga": {
+    "name": "Passata emiliana l'armoniosa",
+    "brand": "Mutti",
+    "price": 1.59,
+    "fullPrice": null,
+    "date": "2026-09-05",
+    "size": {
+     "amount": 0.4,
+     "dim": "kg"
+    },
+    "store": "Esselunga, Marore"
+   },
+   "coop": {
+    "name": "Il delicato - passata extrafine",
+    "brand": "Petti",
+    "price": 1.95,
+    "fullPrice": null,
+    "date": "2025-08-20",
+    "size": {
+     "amount": 0.7,
+     "dim": "kg"
+    },
+    "store": "Coop, San Gimignano"
+   }
+  },
+  "pesce": {
+   "conad": {
+    "name": "Salmone affumicato lapponia",
+    "brand": "Labeyrie",
+    "price": 11.9,
+    "fullPrice": null,
+    "date": "2025-12-07",
+    "size": {
+     "amount": 0.22,
+     "dim": "kg"
+    },
+    "store": "Conad, Roma"
+   },
+   "esselunga": {
+    "name": "Salmone in olio d'oliva",
+    "brand": "Esselunga",
+    "price": 3.16,
+    "fullPrice": null,
+    "date": "2026-08-30",
+    "size": null,
+    "store": "Esselunga, Marore"
+   }
+  },
+  "birra": {
+   "conad": {
+    "name": "Birra",
+    "brand": "Conad",
+    "price": 0.74,
+    "fullPrice": null,
+    "date": "2025-12-07",
+    "size": {
+     "amount": 0.33,
+     "dim": "l"
+    },
+    "store": "Conad, Roma"
+   },
+   "aldi": {
+    "name": "Birra karlskrone pils",
+    "brand": null,
+    "price": 0.65,
+    "fullPrice": null,
+    "date": "2024-05-03",
+    "size": null,
+    "store": "Aldi, Bolzano - Bozen"
+   }
+  },
+  "caffe": {
+   "conad": {
+    "name": "Caffè Borbone in grani",
+    "brand": "Borbone",
+    "price": 14.9,
+    "fullPrice": null,
+    "date": "2026-07-15",
+    "size": null,
+    "store": "Conad, Forlì"
+   },
+   "carrefour": {
+    "name": "Caffe' Gusto Classico",
+    "brand": "Lavazza",
+    "price": 5.09,
+    "fullPrice": null,
+    "date": "2024-11-30",
+    "size": {
+     "amount": 0.25,
+     "dim": "kg"
+    },
+    "store": "Carrefour, Torino"
+   },
+   "pam": {
+    "name": "Nescafé, Gold cappuccino, Cappuccino",
+    "brand": "Cappuccino",
+    "price": 4,
+    "fullPrice": null,
+    "date": "2024-11-30",
+    "size": {
+     "amount": 0.14,
+     "dim": "kg"
+    },
+    "store": "Pam, Cavoretto"
+   }
+  },
+  "tonno": {
+   "conad": {
+    "name": "Tonno Alio Oliva",
+    "brand": "Conad",
+    "price": 3.29,
+    "fullPrice": null,
+    "date": "2025-12-07",
+    "size": {
+     "amount": 0.28,
+     "dim": "kg"
+    },
+    "store": "Conad, Roma"
+   },
+   "esselunga": {
+    "name": "Tonno All'olio Di Oliva",
+    "brand": "Esselunga",
+    "price": 3.79,
+    "fullPrice": null,
+    "date": "2026-09-05",
+    "size": null,
+    "store": "Esselunga, Marore"
+   },
+   "coop": {
+    "name": "Filetti di tonno al a pinne gialle al naturale",
+    "brand": "Coop",
+    "price": 4.89,
+    "fullPrice": null,
+    "date": "2025-10-04",
+    "size": {
+     "amount": 0.2,
+     "dim": "kg"
+    },
+    "store": "Coop Trentino, Vela"
+   },
+   "lidl": {
+    "name": "Trancetti di tonno",
+    "brand": "Nixe",
+    "price": 3.25,
+    "fullPrice": null,
+    "date": "2026-08-27",
+    "size": {
+     "amount": 0.3,
+     "dim": "kg"
+    },
+    "store": "Lidl, Parmentello"
+   },
+   "eurospin": {
+    "name": "Tonno all'olio d'oliva",
+    "brand": "Athena",
+    "price": 1.19,
+    "fullPrice": 1.59,
+    "date": "2026-02-21",
+    "size": {
+     "amount": 0.16,
+     "dim": "kg"
+    },
+    "store": "EuroSpin, Mesagne"
+   }
+  },
+  "marmellata": {
+   "conad": {
+    "name": "Confettura extra di frutti di bosco",
+    "brand": "Conad",
+    "price": 1.75,
+    "fullPrice": null,
+    "date": "2025-12-07",
+    "size": {
+     "amount": 0.52,
+     "dim": "kg"
+    },
+    "store": "Conad, Roma"
+   },
+   "lidl": {
+    "name": "Marmellata di arance",
+    "brand": "Lidl",
+    "price": 1.59,
+    "fullPrice": null,
+    "date": "2026-07-19",
+    "size": null,
+    "store": "Lidl, Oneda"
+   },
+   "esselunga": {
+    "name": "Confettura extra di pera",
+    "brand": "Le conserve della nonna",
+    "price": 2.09,
+    "fullPrice": 3.49,
+    "date": "2025-02-27",
+    "size": {
+     "amount": 0.4,
+     "dim": "kg"
+    },
+    "store": "Esselunga, Milano"
+   },
+   "aldi": {
+    "name": "Marmellata di mandarino tardivo di ciaculli",
+    "brand": null,
+    "price": 2.39,
+    "fullPrice": null,
+    "date": "2025-01-29",
+    "size": null,
+    "store": "Aldi, Bolzano - Bozen"
+   }
+  },
+  "pane": {
+   "conad": {
+    "name": "Pane integrale tre cereali",
+    "brand": "Gilli",
+    "price": 4.8,
+    "fullPrice": null,
+    "date": "2025-12-07",
+    "size": {
+     "amount": 0.5,
+     "dim": "kg"
+    },
+    "store": "Conad, Roma"
+   },
+   "esselunga": {
+    "name": "Pane Morbido di Grano Tenero",
+    "brand": "Esselunga",
+    "price": 0.99,
+    "fullPrice": null,
+    "date": "2025-07-19",
+    "size": {
+     "amount": 0.4,
+     "dim": "kg"
+    },
+    "store": "Esselunga, Vicenza"
+   },
+   "carrefour": {
+    "name": "Pan Bauletto",
+    "brand": "Mulino Bianco",
+    "price": 1.59,
+    "fullPrice": null,
+    "date": "2026-09-05",
+    "size": {
+     "amount": 0.4,
+     "dim": "kg"
+    },
+    "store": "Carrefour Market, Milano"
+   },
+   "lidl": {
+    "name": "Pain Bauletto Integrale",
+    "brand": "Lidl",
+    "price": 0.79,
+    "fullPrice": 0.99,
+    "date": "2025-08-28",
+    "size": null,
+    "store": "Lidl, Velate"
+   }
+  },
+  "gelato": {
+   "conad": {
+    "name": "Ghiaccioli",
+    "brand": "Conad",
+    "price": 2.89,
+    "fullPrice": null,
+    "date": "2025-12-07",
+    "size": {
+     "amount": 0.65,
+     "dim": "kg"
+    },
+    "store": "Conad, Roma"
+   },
+   "esselunga": {
+    "name": "Ghiacciolo alla menta",
+    "brand": "Eskigel",
+    "price": 1.49,
+    "fullPrice": null,
+    "date": "2026-07-19",
+    "size": {
+     "amount": 0.39,
+     "dim": "kg"
+    },
+    "store": "Esselunga, Abbazia"
+   }
+  },
+  "mozzarella": {
+   "conad": {
+    "name": "Piacere si mozzarella",
+    "brand": "Piacersi CONAD",
+    "price": 1.39,
+    "fullPrice": null,
+    "date": "2025-12-07",
+    "size": {
+     "amount": 0.125,
+     "dim": "kg"
+    },
+    "store": "Conad, Roma"
+   },
+   "esselunga": {
+    "name": "Mozzarella",
+    "brand": "Esselunga",
+    "price": 0.98,
+    "fullPrice": null,
+    "date": "2026-08-30",
+    "size": {
+     "amount": 0.125,
+     "dim": "kg"
+    },
+    "store": "Esselunga, Marore"
+   }
+  },
+  "panna": {
+   "lidl": {
+    "name": "Panna da cucina",
+    "brand": "Latteria",
+    "price": 0.79,
+    "fullPrice": null,
+    "date": "2024-11-30",
+    "size": {
+     "amount": 0.2,
+     "dim": "l"
+    },
+    "store": "Lidl, Torino"
+   }
+  },
+  "uova": {
+   "lidl": {
+    "name": "Bio organic 4 uova fresche",
+    "brand": "Bio Organic",
+    "price": 1.29,
+    "fullPrice": null,
+    "date": "2024-11-30",
+    "size": null,
+    "store": "Lidl, Torino"
+   },
+   "esselunga": {
+    "name": "Uova fresche medie",
+    "brand": "Esselunga",
+    "price": 2.89,
+    "fullPrice": null,
+    "date": "2026-08-30",
+    "size": null,
+    "store": "Esselunga, Marore"
+   }
+  },
+  "zucchero": {
+   "lidl": {
+    "name": "Zucchero bianco",
+    "brand": "Belbake",
+    "price": 0.99,
+    "fullPrice": 1.15,
+    "date": "2024-11-30",
+    "size": {
+     "amount": 1,
+     "dim": "kg"
+    },
+    "store": "Lidl, Torino"
+   }
+  },
+  "farina": {
+   "lidl": {
+    "name": "Farina di grano tenero",
+    "brand": "Belbake",
+    "price": 0.49,
+    "fullPrice": 0.55,
+    "date": "2024-11-30",
+    "size": {
+     "amount": 1,
+     "dim": "kg"
+    },
+    "store": "Lidl, Torino"
+   },
+   "coop": {
+    "name": "Farina di grano saraceno grossa",
+    "brand": "Rieper",
+    "price": 1.99,
+    "fullPrice": null,
+    "date": "2024-12-21",
+    "size": {
+     "amount": 0.5,
+     "dim": "kg"
+    },
+    "store": "Coop, St. Michael - San Michele"
+   },
+   "conad": {
+    "name": "Farina di avena",
+    "brand": "Molino Rossetto",
+    "price": 2.99,
+    "fullPrice": null,
+    "date": "2026-09-27",
+    "size": {
+     "amount": 0.9,
+     "dim": "kg"
+    },
+    "store": "Conad spesa facile, Monselice"
+   }
+  },
+  "insalata": {
+   "lidl": {
+    "name": "Insalata ricca",
+    "brand": null,
+    "price": 0.95,
+    "fullPrice": null,
+    "date": "2024-11-30",
+    "size": {
+     "amount": 0.2,
+     "dim": "kg"
+    },
+    "store": "Lidl, Torino"
+   },
+   "esselunga": {
+    "name": "insalatina",
+    "brand": "Bio",
+    "price": 0.98,
+    "fullPrice": null,
+    "date": "2026-09-05",
+    "size": {
+     "amount": 0.15,
+     "dim": "kg"
+    },
+    "store": "Esselunga, Marore"
+   },
+   "coop": {
+    "name": "valeriana",
+    "brand": "Coop",
+    "price": 1.28,
+    "fullPrice": null,
+    "date": "2026-09-30",
+    "size": null,
+    "store": "Coop, Vercelli"
+   }
+  },
+  "frutta": {
+   "lidl": {
+    "name": "Frutta di stagione",
+    "brand": null,
+    "price": 3.33,
+    "fullPrice": null,
+    "date": "2024-11-30",
+    "size": {
+     "amount": 1,
+     "dim": "kg"
+    },
+    "store": "Lidl, Torino"
+   },
+   "esselunga": {
+    "name": "PESCA POLPA GIALLA O' HENRY",
+    "brand": null,
+    "price": 1.98,
+    "fullPrice": null,
+    "date": "2026-09-05",
+    "size": {
+     "amount": 1,
+     "dim": "kg"
+    },
+    "store": "Esselunga, Marore"
+   },
+   "aldi": {
+    "name": "Uva seedless 500g",
+    "brand": null,
+    "price": 1.49,
+    "fullPrice": null,
+    "date": "2026-08-03",
+    "size": null,
+    "store": "Aldi, Dozza"
+   }
+  },
+  "riso": {
+   "pam": {
+    "name": "Riso",
+    "brand": "PAM",
+    "price": 1.25,
+    "fullPrice": null,
+    "date": "2024-11-30",
+    "size": null,
+    "store": "Pam, Torino"
+   },
+   "lidl": {
+    "name": "Riso Roma",
+    "brand": "Lidl",
+    "price": 4.39,
+    "fullPrice": null,
+    "date": "2024-07-24",
+    "size": null,
+    "store": "Lidl, Lucca"
+   }
+  },
+  "formaggio": {
+   "pam": {
+    "name": "Parmigiano reggiano dop",
+    "brand": "Pam Panorama",
+    "price": 6.9,
+    "fullPrice": null,
+    "date": "2024-11-30",
+    "size": null,
+    "store": "Pam, Torino"
+   },
+   "esselunga": {
+    "name": "Feta formaggio dop",
+    "brand": "Kionas",
+    "price": 3.99,
+    "fullPrice": null,
+    "date": "2026-09-05",
+    "size": null,
+    "store": "Esselunga, Marore"
+   },
+   "md": {
+    "name": "Pecorino romano DOP",
+    "brand": "Malga Paradiso",
+    "price": 3.99,
+    "fullPrice": null,
+    "date": "2024-12-12",
+    "size": {
+     "amount": 0.2,
+     "dim": "kg"
+    },
+    "store": "MD, Rentsch - Rencio"
+   },
+   "lidl": {
+    "name": "Gorgonzola",
+    "brand": "Italiamo",
+    "price": 2.99,
+    "fullPrice": null,
+    "date": "2024-07-24",
+    "size": null,
+    "store": "Lidl, Lucca"
+   },
+   "coop": {
+    "name": "Formaggini Parmigiano Reggiano Schmelzkäse",
+    "brand": "Parmareggio",
+    "price": 1.35,
+    "fullPrice": null,
+    "date": "2026-09-30",
+    "size": {
+     "amount": 0.14,
+     "dim": "kg"
+    },
+    "store": "Coop, Vercelli"
+   }
+  },
+  "acqua": {
+   "esselunga": {
+    "name": "Acqua S. anna Natur. LT1.5 X6bott.",
+    "brand": "Sant'Anna",
+    "price": 2.12,
+    "fullPrice": 3.54,
+    "date": "2026-09-05",
+    "size": {
+     "amount": 9,
+     "dim": "l"
+    },
+    "store": "Esselunga, Marore"
+   },
+   "coop": {
+    "name": "Acqua minerales naturale sant'anna sorgente Rebruant",
+    "brand": "Sant'Anna",
+    "price": 0.66,
+    "fullPrice": null,
+    "date": "2025-08-20",
+    "size": {
+     "amount": 2,
+     "dim": "l"
+    },
+    "store": "Coop, San Gimignano"
+   },
+   "conad": {
+    "name": "Acqua minerale naturale frizzante",
+    "brand": "Conad",
+    "price": 0.28,
+    "fullPrice": null,
+    "date": "2024-08-28",
+    "size": {
+     "amount": 1.5,
+     "dim": "l"
+    },
+    "store": "Conad City, Verona"
+   },
+   "pam": {
+    "name": "Acqua",
+    "brand": "Pam & Panorama",
+    "price": 0.5,
+    "fullPrice": null,
+    "date": "2025-02-23",
+    "size": null,
+    "store": "Pam Local, Bologna"
+   }
+  },
+  "yogurt": {
+   "esselunga": {
+    "name": "Alpiyo Valtellina",
+    "brand": "Alpiyò",
+    "price": 1.29,
+    "fullPrice": null,
+    "date": "2026-09-05",
+    "size": {
+     "amount": 0.125,
+     "dim": "kg"
+    },
+    "store": "Esselunga, Marore"
+   },
+   "md": {
+    "name": "Yogurt da bere (Fragola)",
+    "brand": "MD",
+    "price": 0.99,
+    "fullPrice": null,
+    "date": "2025-02-06",
+    "size": null,
+    "store": "MD, Rentsch - Rencio"
+   },
+   "conad": {
+    "name": "yogurt greco 0% grassi altoproteico",
+    "brand": "Neogal",
+    "price": 0.89,
+    "fullPrice": null,
+    "date": "2025-05-16",
+    "size": {
+     "amount": 0.15,
+     "dim": "kg"
+    },
+    "store": "Conad, Rescaldina"
+   },
+   "aldi": {
+    "name": "MIX - Yogurt Bianco Più Fiocchi al Cioccolato",
+    "brand": "Muller",
+    "price": 2.99,
+    "fullPrice": null,
+    "date": "2026-08-03",
+    "size": {
+     "amount": 0.6,
+     "dim": "kg"
+    },
+    "store": "Aldi, Dozza"
+   },
+   "coop": {
+    "name": "yogurt agli agrumi intero bio",
+    "brand": "ViviVerde bio",
+    "price": 1.46,
+    "fullPrice": null,
+    "date": "2024-07-02",
+    "size": {
+     "amount": 0.25,
+     "dim": "kg"
+    },
+    "store": "Coop, San Nicolò di Villola"
+   },
+   "lidl": {
+    "name": "Yogurt Bianco Magro",
+    "brand": "Milbona",
+    "price": 0.95,
+    "fullPrice": null,
+    "date": "2026-09-28",
+    "size": {
+     "amount": 0.5,
+     "dim": "kg"
+    },
+    "store": "Lidl, Vercelli"
+   },
+   "eurospin": {
+    "name": "Yogurt greco bianco",
+    "brand": "Eurospin",
+    "price": 0.99,
+    "fullPrice": null,
+    "date": "2026-01-25",
+    "size": {
+     "amount": 0.15,
+     "dim": "kg"
+    },
+    "store": "EuroSpin, Trapani"
+   }
+  },
+  "legumi": {
+   "esselunga": {
+    "name": "Ceci bio",
+    "brand": "Esselunga",
+    "price": 1.35,
+    "fullPrice": null,
+    "date": "2026-09-05",
+    "size": {
+     "amount": 0.24,
+     "dim": "kg"
+    },
+    "store": "Esselunga, Marore"
+   },
+   "lidl": {
+    "name": "Fagioli Borlotti",
+    "brand": "Campo Largo",
+    "price": 0.59,
+    "fullPrice": null,
+    "date": "2024-07-24",
+    "size": null,
+    "store": "Lidl, Lucca"
+   }
+  },
+  "banane": {
+   "esselunga": {
+    "name": "ESSELUNGA BIO BANANE BIO Origine: PERU PESO NETTO 851g",
+    "brand": null,
+    "price": 3.28,
+    "fullPrice": null,
+    "date": "2026-08-30",
+    "size": {
+     "amount": 1,
+     "dim": "kg"
+    },
+    "store": "Esselunga, Marore"
+   },
+   "aldi": {
+    "name": "Banane BIO Fairtr.",
+    "brand": null,
+    "price": 2.79,
+    "fullPrice": null,
+    "date": "2026-08-03",
+    "size": {
+     "amount": 1,
+     "dim": "kg"
+    },
+    "store": "Aldi, Dozza"
+   }
+  },
+  "mele": {
+   "esselunga": {
+    "name": "MELE GOLDEN",
+    "brand": null,
+    "price": 2.38,
+    "fullPrice": null,
+    "date": "2026-08-30",
+    "size": {
+     "amount": 1,
+     "dim": "kg"
+    },
+    "store": "Esselunga, Marore"
+   }
+  },
+  "verdura": {
+   "esselunga": {
+    "name": "CAROTE NATURAMA",
+    "brand": null,
+    "price": 1.58,
+    "fullPrice": null,
+    "date": "2026-09-05",
+    "size": {
+     "amount": 1,
+     "dim": "kg"
+    },
+    "store": "Esselunga, Marore"
+   }
+  },
+  "pomodori": {
+   "esselunga": {
+    "name": "POMODORI PERIMI ROSSI",
+    "brand": null,
+    "price": 1.98,
+    "fullPrice": null,
+    "date": "2026-09-05",
+    "size": {
+     "amount": 1,
+     "dim": "kg"
+    },
+    "store": "Esselunga, Marore"
+   },
+   "lidl": {
+    "name": "Pomodori",
+    "brand": null,
+    "price": 1.69,
+    "fullPrice": null,
+    "date": "2024-07-20",
+    "size": {
+     "amount": 1,
+     "dim": "kg"
+    },
+    "store": "Lidl, Matelica"
+   }
+  },
+  "patate": {
+   "esselunga": {
+    "name": "PATATE DOLCI",
+    "brand": null,
+    "price": 2.98,
+    "fullPrice": null,
+    "date": "2026-08-30",
+    "size": {
+     "amount": 1,
+     "dim": "kg"
+    },
+    "store": "Esselunga, Marore"
+   },
+   "lidl": {
+    "name": "Patate",
+    "brand": "Deluxe",
+    "price": 2.49,
+    "fullPrice": 3.49,
+    "date": "2025-08-25",
+    "size": {
+     "amount": 1.5,
+     "dim": "kg"
+    },
+    "store": "Lidl, Iseo"
+   }
+  },
+  "succo": {
+   "carrefour": {
+    "name": "Succo ananas",
+    "brand": "Carrefour",
+    "price": 1.55,
+    "fullPrice": null,
+    "date": "2024-11-30",
+    "size": {
+     "amount": 1,
+     "dim": "l"
+    },
+    "store": "Carrefour, Torino"
+   },
+   "esselunga": {
+    "name": "Le spremute - Arancia Rossa",
+    "brand": "Esselunga",
+    "price": 2.59,
+    "fullPrice": null,
+    "date": "2025-04-18",
+    "size": {
+     "amount": 0.75,
+     "dim": "l"
+    },
+    "store": "Esselunga, Milano"
+   },
+   "conad": {
+    "name": "Spremuta tropicale",
+    "brand": "Conad",
+    "price": 2.15,
+    "fullPrice": null,
+    "date": "2024-10-11",
+    "size": {
+     "amount": 0.75,
+     "dim": "l"
+    },
+    "store": "Conad, Bolzano - Bozen"
+   }
+  },
+  "bibite": {
+   "aldi": {
+    "name": "Coca-Cola Zero",
+    "brand": "Coca-Cola",
+    "price": 0.99,
+    "fullPrice": null,
+    "date": "2024-05-03",
+    "size": {
+     "amount": 0.5,
+     "dim": "l"
+    },
+    "store": "Aldi, Bolzano - Bozen"
+   },
+   "despar": {
+    "name": "Coca cola zero",
+    "brand": "Coca-Cola",
+    "price": 1.49,
+    "fullPrice": null,
+    "date": "2024-05-16",
+    "size": {
+     "amount": 0.45,
+     "dim": "l"
+    },
+    "store": "Eurospar, Bolzano - Bozen"
+   }
+  },
+  "prosciutto": {
+   "coop": {
+    "name": "Prosciutto di Parma Dop",
+    "brand": "Fiorfiore",
+    "price": 4.9,
+    "fullPrice": null,
+    "date": "2024-07-02",
+    "size": {
+     "amount": 0.1,
+     "dim": "kg"
+    },
+    "store": "Coop, San Nicolò di Villola"
+   },
+   "eurospin": {
+    "name": "Prosciutto Crudo",
+    "brand": "Eurospin",
+    "price": 1.79,
+    "fullPrice": null,
+    "date": "2026-03-27",
+    "size": {
+     "amount": 0.1,
+     "dim": "kg"
+    },
+    "store": "EuroSpin, Camerino"
+   }
+  },
+  "burro": {
+   "penny": {
+    "name": "Burro la latteria",
+    "brand": "Penny",
+    "price": 3.69,
+    "fullPrice": null,
+    "date": "2026-10-08",
+    "size": {
+     "amount": 0.5,
+     "dim": "kg"
+    },
+    "store": "Penny Market, Vercelli"
+   }
+  },
+  "carne": {
+   "eurospin": {
+    "name": "Buon pascolo carne in gelatina",
+    "brand": "Eurospin",
+    "price": 2.69,
+    "fullPrice": null,
+    "date": "2024-07-01",
+    "size": {
+     "amount": 0.27,
+     "dim": "kg"
+    },
+    "store": "EuroSpin, Vallecrosia"
+   }
+  },
+  "bagnoschiuma": {
+   "esselunga": {
+    "name": "Sapone Vegetale all'Olio d'Oliva",
+    "brand": "Esselunga",
+    "price": 1.89,
+    "fullPrice": null,
+    "date": "2025-06-30",
+    "size": {
+     "amount": 0.2,
+     "dim": "kg"
+    },
+    "store": "Esselunga, Milano"
+   }
+  },
+  "shampoo": {
+   "esselunga": {
+    "name": "LISCI CHERATINA Shampoo",
+    "brand": "Garnier",
+    "price": 4.99,
+    "fullPrice": null,
+    "date": "2025-07-23",
+    "size": {
+     "amount": 0.2,
+     "dim": "l"
+    },
+    "store": "Esselunga, Verona"
+   }
+  }
+ }
+}

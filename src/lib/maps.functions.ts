@@ -7,6 +7,35 @@ const coordsSchema = z.object({ lat: z.number().min(-90).max(90), lng: z.number(
 const placeSchema = z.object({ id: z.string(), displayName: z.object({ text: z.string() }), formattedAddress: z.string().optional(), location: z.object({ latitude: z.number(), longitude: z.number() }), currentOpeningHours: z.object({ openNow: z.boolean().optional() }).optional() });
 const GATEWAY = 'https://connector-gateway.lovable.dev/google_maps';
 
+export const reverseLocation = createServerFn({ method: 'POST' }).middleware([requireSupabaseAuth]).inputValidator((data: unknown) => coordsSchema.parse(data)).handler(async ({ data, context }) => {
+  const key = process.env['GOOGLE_MAPS_API_KEY'];
+  const lovableKey = process.env['LOVABLE_API_KEY'];
+  if (!key || !lovableKey) throw new Error('Collega Google Maps per trovare il nome della zona.');
+  const cacheKey = `reverse:${data.lat.toFixed(4)}:${data.lng.toFixed(4)}`;
+  const cached = await context.supabase.from('maps_cache').select('result, expires_at').eq('user_id', context.userId).eq('cache_key', cacheKey).maybeSingle();
+  const schema = z.object({ label: z.string().min(1) });
+  if (cached.data && new Date(cached.data.expires_at).getTime() > Date.now()) return schema.parse(cached.data.result);
+  const response = await fetch(`${GATEWAY}/maps/api/geocode/json?latlng=${data.lat},${data.lng}&language=it`, { signal: AbortSignal.timeout(10000), headers: { Authorization: `Bearer ${lovableKey}`, 'X-Connection-Api-Key': key } });
+  if (!response.ok) {
+    const body = await response.text(); console.error('Google reverse geocode failed', response.status, body);
+    if (response.status === 403) {
+      if (body.includes('API_KEY_HTTP_REFERRER_BLOCKED')) throw new Error('La chiave server Google Maps ha restrizioni per siti web. In Google Cloud imposta le restrizioni su Nessuna o Indirizzi IP.');
+      if (body.includes('API_KEY_SERVICE_BLOCKED')) throw new Error('Abilita Geocoding API tra le API consentite della chiave server in Google Cloud.');
+      throw new Error('Google Maps ha negato la ricerca della zona (403). Verifica le restrizioni della chiave server.');
+    }
+    throw new Error(`Nome della zona non disponibile (${response.status}).`);
+  }
+  const parsed = z.object({ status: z.string(), results: z.array(z.object({ formatted_address: z.string(), address_components: z.array(z.object({ long_name: z.string(), types: z.array(z.string()) })) })) }).parse(await response.json());
+  const first = parsed.results[0];
+  if (parsed.status !== 'OK' || !first) throw new Error('Nome della zona non disponibile. Le coordinate restano attive.');
+  const find = (type: string) => first.address_components.find(part => part.types.includes(type))?.long_name;
+  const city = find('locality') ?? find('administrative_area_level_3');
+  const area = find('neighborhood') ?? find('sublocality_level_1') ?? find('sublocality');
+  const result = { label: [...new Set([area, city].filter(Boolean))].join(', ') || first.formatted_address };
+  await context.supabase.from('maps_cache').upsert({ user_id: context.userId, cache_key: cacheKey, result, expires_at: new Date(Date.now() + 86400000).toISOString() });
+  return result;
+});
+
 export const nearbySupermarkets = createServerFn({ method: 'POST' }).middleware([requireSupabaseAuth]).inputValidator((data: unknown) => coordsSchema.parse(data)).handler(async ({ data, context }) => {
   const key = process.env['GOOGLE_MAPS_API_KEY'];
   const lovableKey = process.env['LOVABLE_API_KEY'];

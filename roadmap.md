@@ -1,6 +1,6 @@
 # Easy Shop
 
-- [ ] Correggere solo posizione: manuale salvata, permesso già concesso, IP, fallback; verificare priorità e errori.
+- [x] Corretta solo posizione: manuale salvata, permesso già concesso, IP, fallback; 25 test passati e timeout verificato nell'app. Reverse geocoding e mappa da verificare dall'utente su origine autorizzata.
 
 - [x] Fase 1: implementati posizione IP automatica, cache di sessione e correzione prioritaria; 13 test passati e fallback verificato nell'app.
 - [ ] Verifica utente Fase 1: IP reale e mappa su origine autorizzata; assenti header IP nel sandbox e account registrati.
